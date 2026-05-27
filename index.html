@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Young Professionals Ministry Registration</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-container": "#1e293b",
+                        "surface-tint": "#545f73",
+                        "outline-variant": "#c5c6cd",
+                        "on-surface-variant": "#45474c",
+                        "surface-dim": "#d8dadc",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-fixed": "#89f5e7",
+                        "inverse-primary": "#bcc7de",
+                        "outline": "#75777d",
+                        "secondary-container": "#86f2e4",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed": "#00201d",
+                        "on-error-container": "#93000a",
+                        "primary": "#091426",
+                        "tertiary": "#270c00",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-fixed": "#111c2d",
+                        "inverse-on-surface": "#eff1f3",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#bcc7de",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "on-tertiary-fixed-variant": "#763300",
+                        "on-background": "#191c1e",
+                        "on-primary-container": "#8590a6",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#471c00",
+                        "on-secondary-container": "#006f66",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#331200",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#d8e3fb",
+                        "on-secondary-fixed-variant": "#005049",
+                        "on-tertiary-container": "#de722c",
+                        "secondary": "#003A6B"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "max-width-form": "680px",
+                        "max-width-content": "1200px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+            background-image: radial-gradient(at 0% 0%, hsla(174,78%,95%,1) 0px, transparent 50%),
+                              radial-gradient(at 100% 0%, hsla(217,91%,95%,1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+        }
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #003A6B;
+            box-shadow: 0 0 0 3px rgba(0, 106, 97, 0.15);
+        }
+        .stepper-active {
+            background-color: #003A6B;
+            color: white;
+            box-shadow: 0 0 0 4px rgba(0, 106, 97, 0.15);
+        }
+        .stepper-inactive {
+            background-color: #e6e8ea;
+            color: #45474c;
+        }
+        .conditional-field {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+        }
+        .conditional-field.show {
+            max-height: 120px;
+            opacity: 1;
+            margin-top: 0.75rem;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-secondary-container selection:text-on-secondary-container min-h-screen flex flex-col justify-between">
+
+<!-- Admin Warning Banner -->
+<div id="adminBanner" class="bg-amber-500 text-amber-950 px-4 py-3 text-center text-sm font-semibold shadow-md hidden">
+    <div class="max-w-content mx-auto flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">warning</span>
+        <span><strong>Admin Notice:</strong> The Google Apps Script URL has not been configured in <code>index.html</code> yet. Submissions will simulate successfully but won't save to Sheets.</span>
+    </div>
+</div>
+
+<!-- TopNavBar -->
+<header class="bg-white/80 backdrop-blur-md border-b border-outline-variant sticky top-0 z-50 transition-all">
+    <!-- <div class="flex justify-between items-center h-16 w-full px-6 md:px-12 max-w-content mx-auto">
+        <div class="flex items-center gap-3">
+            <img src="https://lh3.googleusercontent.com/d/1jiWC4Tx6_rPNSPzh_Rzm-eeyiEbUFZk5" class="h-10 w-auto object-contain" alt="JRM Catalyst Logo" onerror="this.style.display='none';" />
+             <div class="font-headline-md text-xl md:text-2xl font-extrabold text-primary tracking-tight">
+                JRM Catalyst
+            </div> -->
+        <!-- </div> -->
+        <!-- <nav class="hidden md:flex items-center space-x-8">
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors" href="#">Our Vision</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors" href="#">Events</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors" href="#">Connect</a>
+        </nav> -->
+        <!-- <div class="flex items-center gap-4">
+            <button class="font-label-md text-label-md text-primary hover:text-secondary transition-all">Login</button>
+        </div> -->
+    <!-- </div> --> 
+</header>
+
+<main class="py-12 px-4 md:px-8 flex-grow">
+    <div class="max-w-max-width-form mx-auto">
+        <!-- Hero Header -->
+        <div class="text-center mb-12">
+            <div class="items-center justify-center mb-10">
+            <img 
+                src="https://lh3.googleusercontent.com/d/1pLtKuquFRbFjHvpG82SBwJ_-qY6MfHmU" 
+                class="max-h-full max-w-full object-contain" 
+                alt="JRM Catalyst Logo" 
+                onerror="this.style.display='none';" 
+            />
+            </div>
+            <span class="bg-secondary/10 text-secondary text-xs uppercase tracking-widest font-semibold px-4 py-1.5 rounded-full inline-block mb-4">Registration Form</span>
+            <h1 class="font-display-lg text-3xl md:text-4xl text-primary mb-4 tracking-tight">JRM CATALSYT</h1>
+            <p class="font-body-lg text-base md:text-lg text-on-surface-variant max-w-md mx-auto">Join a community built on faith, professional growth, and purpose-driven leadership.</p>
+        </div>
+
+        <!-- Stepper -->
+        <div class="flex items-center justify-between mb-12 px-2 md:px-6">
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-label-md text-label-md stepper-circle stepper-active transition-all duration-300">1</div>
+                <span class="font-label-sm text-xs stepper-label text-primary font-semibold">Personal</span>
+            </div>
+            <div class="flex-grow h-0.5 bg-outline-variant mx-2 md:mx-4 mt-[-20px] transition-colors duration-300" id="step-line-1"></div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-label-md text-label-md stepper-circle stepper-inactive transition-all duration-300">2</div>
+                <span class="font-label-sm text-xs stepper-label text-on-surface-variant">Church</span>
+            </div>
+            <div class="flex-grow h-0.5 bg-outline-variant mx-2 md:mx-4 mt-[-20px] transition-colors duration-300" id="step-line-2"></div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-label-md text-label-md stepper-circle stepper-inactive transition-all duration-300">3</div>
+                <span class="font-label-sm text-xs stepper-label text-on-surface-variant">Professional</span>
+            </div>
+            <div class="flex-grow h-0.5 bg-outline-variant mx-2 md:mx-4 mt-[-20px] transition-colors duration-300" id="step-line-3"></div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-label-md text-label-md stepper-circle stepper-inactive transition-all duration-300">4</div>
+                <span class="font-label-sm text-xs stepper-label text-on-surface-variant">Service</span>
+            </div>
+        </div>
+
+        <!-- Form Cards Container -->
+        <div id="formContainer" class="transition-all duration-500">
+            <form class="space-y-8" id="registrationForm" novalidate>
+                <!-- Section 1: Personal Information -->
+                <section id="section-personal" class="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm transition-all hover:border-outline duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-secondary text-2xl" data-icon="person">person</span>
+                        <h2 class="font-headline-md text-xl md:text-2xl text-primary font-bold">Personal Information</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-2">Full Name <span class="text-error">*</span></label>
+                            <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="fullName" name="fullName" placeholder="Juan Dela Cruz" required type="text"/>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please enter your full name.</span>
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-2">Nickname</label>
+                            <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="nickname" name="nickname" placeholder="Uno" type="text"/>
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-2">Age <span class="text-error">*</span></label>
+                            <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="age" name="age" min="15" max="100" placeholder="25" required type="number"/>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please enter a valid age (15-100).</span>
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-2">Mobile Number <span class="text-error">*</span></label>
+                            <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="mobileNumber" name="mobileNumber" placeholder="e.g. 09171234567" required type="tel"/>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please enter a valid mobile number.</span>
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-2">Email Address <span class="text-error">*</span></label>
+                            <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="emailAddress" name="emailAddress" placeholder="uno.cruz@corporate.com" required type="email"/>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please enter a valid email address.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Church Information -->
+                <section id="section-church" class="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm transition-all hover:border-outline duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-secondary text-2xl" data-icon="church">church</span>
+                        <h2 class="font-headline-md text-xl md:text-2xl text-primary font-bold">Church Information</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-2">How long have you been attending the church? <span class="text-error">*</span></label>
+                            <select class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="churchAttendingDuration" name="churchAttendingDuration" required>
+                                <option value="" disabled selected>Select duration</option>
+                                <option value="Less than 6 months">Less than 6 months</option>
+                                <option value="6 months - 1 year">6 months - 1 year</option>
+                                <option value="1 - 3 years">1 - 3 years</option>
+                                <option value="3+ years">3+ years</option>
+                                <option value="I'm a visitor">I'm a visitor</option>
+                            </select>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please select an option.</span>
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-3">Are you part of a discipleship group? <span class="text-error">*</span></label>
+                            <div class="flex gap-8">
+                                <label class="flex items-center gap-2.5 cursor-pointer group">
+                                    <input class="w-5 h-5 text-secondary border-outline-variant focus:ring-secondary/20" name="discipleshipGroup" value="Yes" type="radio" required/>
+                                    <span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Yes</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 cursor-pointer group">
+                                    <input class="w-5 h-5 text-secondary border-outline-variant focus:ring-secondary/20" name="discipleshipGroup" value="No" type="radio" required/>
+                                    <span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">No</span>
+                                </label>
+                            </div>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please select whether you are in a discipleship group.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Professional Information -->
+                <section id="section-professional" class="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm transition-all hover:border-outline duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-secondary text-2xl" data-icon="work">work</span>
+                        <h2 class="font-headline-md text-xl md:text-2xl text-primary font-bold">Professional Information</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-3">Current Status <span class="text-error">*</span></label>
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="statusGroup">
+                                <label class="flex items-center gap-2.5 p-3.5 border border-outline-variant rounded-xl cursor-pointer hover:bg-slate-50 transition-all">
+                                    <input class="text-secondary border-outline-variant focus:ring-secondary/20" name="currentStatus" value="Student" type="radio" required/>
+                                    <span class="font-label-sm text-xs font-semibold">Student</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 p-3.5 border border-outline-variant rounded-xl cursor-pointer hover:bg-slate-50 transition-all">
+                                    <input class="text-secondary border-outline-variant focus:ring-secondary/20" name="currentStatus" value="Employed" type="radio" required/>
+                                    <span class="font-label-sm text-xs font-semibold">Employed</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 p-3.5 border border-outline-variant rounded-xl cursor-pointer hover:bg-slate-50 transition-all">
+                                    <input class="text-secondary border-outline-variant focus:ring-secondary/20" name="currentStatus" value="Freelancer" type="radio" required/>
+                                    <span class="font-label-sm text-xs font-semibold">Freelancer</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 p-3.5 border border-outline-variant rounded-xl cursor-pointer hover:bg-slate-50 transition-all">
+                                    <input class="text-secondary border-outline-variant focus:ring-secondary/20" name="currentStatus" value="Business Owner" type="radio" required/>
+                                    <span class="font-label-sm text-xs font-semibold">Business Owner</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 p-3.5 border border-outline-variant rounded-xl cursor-pointer hover:bg-slate-50 transition-all col-span-2 md:col-span-1">
+                                    <input class="text-secondary border-outline-variant focus:ring-secondary/20" name="currentStatus" value="Looking for Work" type="radio" required/>
+                                    <span class="font-label-sm text-xs font-semibold">Looking for Work</span>
+                                </label>
+                            </div>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please select your current professional status.</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block font-label-md text-sm text-on-surface-variant mb-2">Company Name <span class="text-xs italic opacity-70">(Optional)</span></label>
+                                <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="companyName" name="companyName" placeholder="Widely Known Corp" type="text"/>
+                            </div>
+                            <div>
+                                <label class="block font-label-md text-sm text-on-surface-variant mb-2">Job Position <span class="text-xs italic opacity-70">(Optional)</span></label>
+                                <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="jobPosition" name="jobPosition" placeholder="Accountant" type="text"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-label-md text-sm text-on-surface-variant mb-2">Industry Field <span class="text-error">*</span></label>
+                            <select class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="industryField" name="industryField" required>
+                                <option value="" disabled selected>Select industry</option>
+                                <option value="Information Technology (IT)">Information Technology (IT)</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Education">Education</option>
+                                <option value="Finance / Banking">Finance / Banking</option>
+                                <option value="Business / Entrepreneurship">Business / Entrepreneurship</option>
+                                <option value="Sales / Marketing">Sales / Marketing</option>
+                                <option value="Customer Service / BPO">Customer Service / BPO</option>
+                                <option value="Creative / Multimedia">Creative / Multimedia</option>
+                                <option value="Government">Government</option>
+                                <option value="Logistics / Supply Chain">Logistics / Supply Chain</option>
+                                <option value="Construction / Architecture">Construction / Architecture</option>
+                                <option value="Human Resources">Human Resources</option>
+                                <option value="Hospitality / Tourism">Hospitality / Tourism</option>
+                                <option value="Data / Analytics">Data / Analytics</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <span class="error-msg text-xs text-error mt-1 hidden">Please select an industry field.</span>
+                            
+                            <!-- Dynamic text input for Industry 'Others' -->
+                            <div id="industryFieldOtherContainer" class="conditional-field">
+                                <label class="block font-label-md text-xs text-on-surface-variant mb-1.5">Please specify your industry field: <span class="text-error">*</span></label>
+                                <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="industryFieldOther" name="industryFieldOther" placeholder="Specify your industry..." type="text"/>
+                                <span class="error-msg text-xs text-error mt-1 hidden">Please fill in this field.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Skills & Expertise -->
+                <section id="section-skills" class="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm transition-all hover:border-outline duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-secondary text-2xl" data-icon="star">star</span>
+                        <h2 class="font-headline-md text-xl md:text-2xl text-primary font-bold">Skills &amp; Expertise</h2>
+                    </div>
+                    <p class="font-body-md text-sm text-on-surface-variant mb-4">Check all that apply:</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="skillsGroup">
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Teaching" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Teaching</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Leadership" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Leadership</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Graphic Design" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Graphic Design</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Video Editing" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Video Editing</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Programming / Tech" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Programming / Tech</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Photography" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Photography</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Music / Instruments" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Music / Instruments</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Public Speaking" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Public Speaking</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Event Organizing" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Event Organizing</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Social Media Management" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Social Media Mgt.</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Admin / Documentation" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Admin / Docu</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Data Analysis" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Data Analysis</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="skills" value="Writing / Content Creation" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold">Writing / Content</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-slate-50 rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer">
+                            <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" id="skillsCheckboxOther" name="skills" value="Others" type="checkbox"/>
+                            <span class="font-label-sm text-xs font-semibold text-secondary">Others</span>
+                        </label>
+                    </div>
+
+                    <!-- Dynamic text input for Skills 'Others' -->
+                    <div id="skillsOtherContainer" class="conditional-field">
+                        <label class="block font-label-md text-xs text-on-surface-variant mb-1.5">Please specify your other skills: <span class="text-error">*</span></label>
+                        <input class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="skillsOther" name="skillsOther" placeholder="Specify your skills..." type="text"/>
+                        <span class="error-msg text-xs text-error mt-1 hidden">Please fill in this field.</span>
+                    </div>
+                </section>
+
+                <!-- Section 5: Ministry Interest & Availability -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Ministry Interest -->
+                    <section id="section-ministry" class="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm transition-all hover:border-outline duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-secondary text-2xl" data-icon="volunteer_activism">volunteer_activism</span>
+                            <h2 class="font-headline-md text-xl text-primary font-bold">Ministry Interest</h2>
+                        </div>
+                        <p class="font-body-md text-sm text-on-surface-variant mb-4">Where would you like to serve?</p>
+                        <div class="space-y-2.5">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Worship Ministry" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Worship Ministry</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Media / Multimedia" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Media / Multimedia</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Tech Ministry" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Tech Ministry</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Events Team" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Events Team</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Discipleship" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Discipleship</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Outreach / Evangelism" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Outreach / Evangelism</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Admin Support" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Admin Support</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Prayer Ministry" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Prayer Ministry</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Creative Ministry" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Creative Ministry</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="ministryInterests" value="Not sure yet" type="checkbox"/>
+                                <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors font-medium text-secondary">Not sure yet</span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <!-- Availability -->
+                    <section id="section-availability" class="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm transition-all hover:border-outline duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-6">
+                                <span class="material-symbols-outlined text-secondary text-2xl" data-icon="calendar_month">calendar_month</span>
+                                <h2 class="font-headline-md text-xl text-primary font-bold">Availability <span class="text-error">*</span></h2>
+                            </div>
+                            <p class="font-body-md text-sm text-on-surface-variant mb-4">When are you available?</p>
+                            <div class="space-y-2.5" id="availabilityGroup">
+                                <label class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer group">
+                                    <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="availability" value="Weekdays" type="checkbox"/>
+                                    <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Weekdays</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer group">
+                                    <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="availability" value="Saturdays" type="checkbox"/>
+                                    <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Saturdays</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer group">
+                                    <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="availability" value="Sundays" type="checkbox"/>
+                                    <span class="font-body-md text-sm text-on-surface group-hover:text-primary transition-colors">Sundays</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer group border border-dashed border-secondary/30">
+                                    <input class="rounded text-secondary border-outline-variant focus:ring-secondary/20" name="availability" value="Flexible" type="checkbox"/>
+                                    <span class="font-body-md text-sm font-semibold text-secondary group-hover:text-primary transition-colors">Flexible</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="error-msg text-xs text-error hidden">Please select at least one availability option.</span>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Section 6: Additional Notes -->
+                <section id="section-notes" class="bg-white border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm transition-all hover:border-outline duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-secondary text-2xl" data-icon="edit_note">edit_note</span>
+                        <h2 class="font-headline-md text-xl md:text-2xl text-primary font-bold">Additional Notes</h2>
+                    </div>
+                    <div>
+                        <label class="block font-label-md text-sm text-on-surface-variant mb-2">What skills or experiences would you like to use to serve God and the church? <span class="text-xs italic opacity-70">(Optional)</span></label>
+                        <textarea class="w-full bg-slate-50 border border-outline-variant rounded-xl px-4 py-3 font-body-md text-body-md form-input-focus transition-all" id="additionalNotes" name="additionalNotes" placeholder="I'd love to help mentor younger students or assist with IT needs..." rows="4"></textarea>
+                    </div>
+                </section>
+
+                <!-- Submission Area -->
+                <div class="pt-8 flex flex-col items-center gap-6">
+                    <p class="font-body-md text-sm text-on-surface-variant text-center max-w-sm">
+                        By submitting this form, you agree to our <a class="text-secondary font-semibold hover:underline" href="#">Privacy Policy</a> regarding your personal data.
+                    </p>
+                    
+                    <button class="w-full md:w-auto min-w-[240px] bg-primary text-white font-label-md text-sm px-12 py-4 rounded-full hover:bg-primary-container transition-all transform hover:-translate-y-0.5 shadow-lg shadow-primary/10 flex items-center justify-center gap-2" type="submit" id="submitBtn">
+                        Complete Registration
+                    </button>
+                    
+                    <div class="flex items-center gap-2 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">lock</span>
+                        <span class="text-xs font-label-sm">Secure Google Cloud encrypted connection</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-slate-100 border-t border-outline-variant mt-20">
+    <div class="flex flex-col md:flex-row justify-between items-center py-12 px-6 md:px-12 max-w-content mx-auto gap-8">
+        <div class="flex flex-col items-center md:items-start gap-2">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" class="h-6 w-auto object-contain" alt="JRM Catalyst Logo" onerror="this.style.display='none';" />
+                <div class="font-headline-sm text-lg font-bold text-primary">JRM Catalyst</div>
+            </div>
+            <div class="font-label-sm text-xs text-on-surface-variant">© 2026 Young Professionals Ministry. All rights reserved.</div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+            <a class="font-label-sm text-xs text-on-surface-variant hover:text-secondary underline transition-all" href="#">Contact Us</a>
+            <a class="font-label-sm text-xs text-on-surface-variant hover:text-secondary underline transition-all" href="#">Church Website</a>
+            <a class="font-label-sm text-xs text-on-surface-variant hover:text-secondary underline transition-all" href="#">Privacy Policy</a>
+            <a class="font-label-sm text-xs text-on-surface-variant hover:text-secondary underline transition-all" href="#">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ==========================================
+    // CONFIGURATION
+    // ==========================================
+    // Put your Google Apps Script Web App URL here
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwRfmrvI1jtcJH3e11FcsGUaJhrBjf-QQI0EQ_usXd5cPjOy-IQkFtL4BndmSV_UZxVuA/exec';
+
+    // Show warnings if script URL is not configured
+    if (WEB_APP_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL' || WEB_APP_URL === '') {
+        document.getElementById('adminBanner').classList.remove('hidden');
+    }
+
+    // ==========================================
+    // DYNAMIC CONDITIONAL FIELDS
+    // ==========================================
+    const industrySelect = document.getElementById('industryField');
+    const industryOtherContainer = document.getElementById('industryFieldOtherContainer');
+    const industryOtherInput = document.getElementById('industryFieldOther');
+
+    industrySelect.addEventListener('change', function() {
+        if (this.value === 'Others') {
+            industryOtherContainer.classList.add('show');
+            industryOtherInput.setAttribute('required', 'true');
+        } else {
+            industryOtherContainer.classList.remove('show');
+            industryOtherInput.removeAttribute('required');
+            industryOtherInput.value = '';
+            hideError(industryOtherInput);
+        }
+    });
+
+    const skillsCheckboxOther = document.getElementById('skillsCheckboxOther');
+    const skillsOtherContainer = document.getElementById('skillsOtherContainer');
+    const skillsOtherInput = document.getElementById('skillsOther');
+
+    skillsCheckboxOther.addEventListener('change', function() {
+        if (this.checked) {
+            skillsOtherContainer.classList.add('show');
+            skillsOtherInput.setAttribute('required', 'true');
+        } else {
+            skillsOtherContainer.classList.remove('show');
+            skillsOtherInput.removeAttribute('required');
+            skillsOtherInput.value = '';
+            hideError(skillsOtherInput);
+        }
+    });
+
+    // ==========================================
+    // STEPPER PROGRESS UPDATES
+    // ==========================================
+    const sections = [
+        document.getElementById('section-personal'),
+        document.getElementById('section-church'),
+        document.getElementById('section-professional'),
+        document.getElementById('section-skills') // Will serve as start of the Service steps
+    ];
+
+    const stepperCircles = document.querySelectorAll('.stepper-circle');
+    const stepperLabels = document.querySelectorAll('.stepper-label');
+
+    // Track user clicks/focus across inputs to update stepper
+    const allInputs = document.querySelectorAll('input, select, textarea');
+    allInputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            const section = input.closest('section');
+            if (section) {
+                // If section is ministry, availability, or notes, it maps to step 4
+                let sectionId = section.getAttribute('id');
+                let stepIndex = 0;
+
+                if (sectionId === 'section-personal') {
+                    stepIndex = 0;
+                } else if (sectionId === 'section-church') {
+                    stepIndex = 1;
+                } else if (sectionId === 'section-professional') {
+                    stepIndex = 2;
+                } else {
+                    stepIndex = 3; // Section skills, ministry, availability, notes
+                }
+                updateStepper(stepIndex);
+            }
+        });
+    });
+
+    function updateStepper(stepIndex) {
+        stepperCircles.forEach((circle, i) => {
+            if (i <= stepIndex) {
+                circle.classList.add('stepper-active');
+                circle.classList.remove('stepper-inactive');
+                stepperLabels[i].classList.add('text-primary', 'font-semibold');
+                stepperLabels[i].classList.remove('text-on-surface-variant');
+                if (i > 0) {
+                    const line = document.getElementById(`step-line-${i}`);
+                    if (line) line.style.backgroundColor = '#003A6B';
+                }
+            } else {
+                circle.classList.add('stepper-inactive');
+                circle.classList.remove('stepper-active');
+                stepperLabels[i].classList.add('text-on-surface-variant');
+                stepperLabels[i].classList.remove('text-primary', 'font-semibold');
+                if (i > 0) {
+                    const line = document.getElementById(`step-line-${i}`);
+                    if (line) line.style.backgroundColor = '#c5c6cd';
+                }
+            }
+        });
+    }
+
+    // ==========================================
+    // CLIENT SIDE VALIDATION
+    // ==========================================
+    function showError(element, message = null) {
+        const parent = element.closest('div') || element.closest('section');
+        const errorSpan = parent.querySelector('.error-msg');
+        element.classList.add('border-error');
+        element.classList.remove('border-outline-variant');
+        if (errorSpan) {
+            if (message) errorSpan.textContent = message;
+            errorSpan.classList.remove('hidden');
+        }
+    }
+
+    function hideError(element) {
+        const parent = element.closest('div') || element.closest('section');
+        const errorSpan = parent.querySelector('.error-msg');
+        element.classList.remove('border-error');
+        element.classList.add('border-outline-variant');
+        if (errorSpan) {
+            errorSpan.classList.add('hidden');
+        }
+    }
+
+    // Validate a single field
+    function validateField(input) {
+        if (!input.hasAttribute('required') && input.type !== 'radio' && input.type !== 'checkbox') {
+            return true;
+        }
+
+        // Validate text/email/number inputs
+        if (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') {
+            if (input.type === 'radio') {
+                const groupName = input.name;
+                const checked = document.querySelector(`input[name="${groupName}"]:checked`);
+                const groupContainer = document.getElementById(groupName + 'Group') || input.closest('div');
+                const errorSpan = groupContainer.nextElementSibling;
+                if (!checked) {
+                    if (errorSpan && errorSpan.classList.contains('error-msg')) errorSpan.classList.remove('hidden');
+                    return false;
+                } else {
+                    if (errorSpan && errorSpan.classList.contains('error-msg')) errorSpan.classList.add('hidden');
+                    return true;
+                }
+            }
+
+            if (input.type === 'checkbox') {
+                // If checking availability group requirements
+                if (input.name === 'availability') {
+                    const checkedCount = document.querySelectorAll('input[name="availability"]:checked').length;
+                    const errorSpan = document.getElementById('availabilityGroup').closest('section').querySelector('.error-msg');
+                    if (checkedCount === 0) {
+                        errorSpan.classList.remove('hidden');
+                        return false;
+                    } else {
+                        errorSpan.classList.add('hidden');
+                        return true;
+                    }
+                }
+                return true;
+            }
+
+            if (!input.value.trim()) {
+                showError(input);
+                return false;
+            }
+
+            // Email validation
+            if (input.type === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(input.value)) {
+                    showError(input, "Please enter a valid email address.");
+                    return false;
+                }
+            }
+
+            // Mobile validation (simple regex)
+            if (input.type === 'tel') {
+                const telRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+                if (input.value.length < 7 || !telRegex.test(input.value)) {
+                    showError(input, "Please enter a valid phone number.");
+                    return false;
+                }
+            }
+
+            // Age validation
+            if (input.id === 'age') {
+                const ageVal = parseInt(input.value);
+                if (isNaN(ageVal) || ageVal < 15 || ageVal > 100) {
+                    showError(input, "Please enter a valid age (15-100).");
+                    return false;
+                }
+            }
+
+            hideError(input);
+            return true;
+        }
+        return true;
+    }
+
+    // Attach real-time validation listeners
+    allInputs.forEach(input => {
+        input.addEventListener('input', () => validateField(input));
+        input.addEventListener('change', () => validateField(input));
+        input.addEventListener('blur', () => validateField(input));
+    });
+
+    // ==========================================
+    // FORM SUBMISSION & INTEGRATION
+    // ==========================================
+    const form = document.getElementById('registrationForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Run full client-side validation
+        let isValid = true;
+        
+        // Validate inputs
+        allInputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+
+        // Additional validation for radios (discipleshipGroup, currentStatus)
+        const discipleshipChecked = document.querySelector('input[name="discipleshipGroup"]:checked');
+        const discipleshipError = document.querySelector('input[name="discipleshipGroup"]').closest('div').nextElementSibling;
+        if (!discipleshipChecked) {
+            discipleshipError.classList.remove('hidden');
+            isValid = false;
+        } else {
+            discipleshipError.classList.add('hidden');
+        }
+
+        const statusChecked = document.querySelector('input[name="currentStatus"]:checked');
+        const statusError = document.getElementById('statusGroup').nextElementSibling;
+        if (!statusChecked) {
+            statusError.classList.remove('hidden');
+            isValid = false;
+        } else {
+            statusError.classList.add('hidden');
+        }
+
+        // Additional validation for availability checkboxes (must have at least one)
+        const availabilityChecked = document.querySelectorAll('input[name="availability"]:checked').length;
+        const availabilityError = document.getElementById('availabilityGroup').closest('section').querySelector('.error-msg');
+        if (availabilityChecked === 0) {
+            availabilityError.classList.remove('hidden');
+            isValid = false;
+        } else {
+            availabilityError.classList.add('hidden');
+        }
+
+        if (!isValid) {
+            // Scroll to the first error
+            const firstError = document.querySelector('.border-error, .error-msg:not(.hidden)');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
+
+        // Form is valid! Start loading animations
+        submitBtn.disabled = true;
+        const originalBtnHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = `
+            <span class="flex items-center gap-2.5">
+                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Registering...
+            </span>
+        `;
+
+        // Gather Form Data
+        const formData = new FormData(form);
+        const jsonObject = {};
+
+        // Helper to get all checkbox values as an array
+        const getCheckboxValues = (name) => {
+            const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+            return Array.from(checkboxes).map(cb => cb.value);
+        };
+
+        jsonObject.fullName = formData.get('fullName');
+        jsonObject.nickname = formData.get('nickname') || "";
+        jsonObject.age = formData.get('age');
+        jsonObject.mobileNumber = formData.get('mobileNumber');
+        jsonObject.emailAddress = formData.get('emailAddress');
+        jsonObject.churchAttendingDuration = formData.get('churchAttendingDuration');
+        jsonObject.discipleshipGroup = formData.get('discipleshipGroup');
+        jsonObject.currentStatus = formData.get('currentStatus');
+        jsonObject.companyName = formData.get('companyName') || "";
+        jsonObject.jobPosition = formData.get('jobPosition') || "";
+        jsonObject.industryField = formData.get('industryField');
+        jsonObject.industryFieldOther = formData.get('industryFieldOther') || "";
+        
+        jsonObject.skills = getCheckboxValues('skills');
+        jsonObject.skillsOther = formData.get('skillsOther') || "";
+        jsonObject.ministryInterests = getCheckboxValues('ministryInterests');
+        jsonObject.availability = getCheckboxValues('availability');
+        jsonObject.additionalNotes = formData.get('additionalNotes') || "";
+
+        // Submit to Google Apps Script
+        if (WEB_APP_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL' || WEB_APP_URL === '') {
+            // Simulated submission when not configured
+            setTimeout(() => {
+                showSuccessScreen(jsonObject);
+            }, 1800);
+        } else {
+            // Actual API Call (using no-cors to bypass browser redirection CORS limits)
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            .then(() => {
+                // With 'no-cors', the response is opaque, but resolving means the browser successfully sent the request.
+                showSuccessScreen(jsonObject);
+            })
+            .catch(error => {
+                console.error('Submission Error:', error);
+                alert('We had trouble reaching the server. Please check your internet connection and try again.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHTML;
+            });
+        }
+    });
+
+    // Displays a beautiful success message in place of the form
+    function showSuccessScreen(data) {
+        // Complete the stepper
+        updateStepper(3);
+        
+        const formContainer = document.getElementById('formContainer');
+        formContainer.style.opacity = '0';
+        
+        setTimeout(() => {
+            formContainer.innerHTML = `
+                <div class="bg-white border border-outline-variant rounded-2xl p-8 md:p-12 text-center shadow-lg transition-all transform scale-100 max-w-lg mx-auto">
+                    <div class="w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="material-symbols-outlined text-secondary text-5xl font-bold">check</span>
+                    </div>
+                    <h2 class="font-headline-lg text-2xl md:text-3xl text-primary font-bold mb-3">Registration Successful!</h2>
+                    <p class="font-body-md text-on-surface-variant mb-8">
+                        Welcome to the family, <strong class="text-primary">${data.nickname || data.fullName.split(' ')[0]}</strong>! We've received your registration for the Young Professionals Ministry.
+                    </p>
+                    
+                    <div class="bg-slate-50 border border-outline-variant rounded-xl p-5 mb-8 text-left space-y-3">
+                        <div class="flex justify-between border-b border-slate-200 pb-2.5">
+                            <span class="text-xs font-semibold text-on-surface-variant">Full Name</span>
+                            <span class="text-xs font-medium text-primary">${data.fullName}</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 pb-2.5">
+                            <span class="text-xs font-semibold text-on-surface-variant">Email</span>
+                            <span class="text-xs font-medium text-primary">${data.emailAddress}</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 pb-2.5">
+                            <span class="text-xs font-semibold text-on-surface-variant">Status</span>
+                            <span class="text-xs font-medium text-primary">${data.currentStatus}</span>
+                        </div>
+                        <div class="flex justify-between pb-1">
+                            <span class="text-xs font-semibold text-on-surface-variant">Ministry Interests</span>
+                            <span class="text-xs font-medium text-secondary text-right max-w-[200px] truncate">${data.ministryInterests.length > 0 ? data.ministryInterests.join(', ') : 'Not sure yet'}</span>
+                        </div>
+                    </div>
+                    
+                    <p class="font-body-md text-sm text-on-surface-variant mb-6">
+                        An email confirmation will be sent shortly, and a ministry leader will reach out to you within 2-3 business days.
+                    </p>
+                    
+                    <button onclick="window.location.reload();" class="bg-primary text-white font-label-md text-sm px-8 py-3.5 rounded-full hover:bg-primary-container transition-all">
+                        Register Another Person
+                    </button>
+                </div>
+            `;
+            formContainer.style.opacity = '1';
+            window.scrollTo({ top: 120, behavior: 'smooth' });
+        }, 300);
+    }
+</script>
+</body>
+</html>
